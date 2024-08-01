@@ -1,0 +1,33 @@
+.pokemon-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+
+    padding: 10px;
+}
+
+.pokemon-card {
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--yellow);
+    border: 6px solid var(--dark-blue);
+    border-radius: 3px;
+    box-shadow: -9px 10px 5px 0px rgba(61, 125, 202, 1);
+}
+
+.pokemon-sprite {
+    height: 200px;
+    padding: 5px;
+}
+
+.pokemon-sprite img {
+    width: 100%;
+    height: 100%;
+}
+
+.pokemon-name {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
