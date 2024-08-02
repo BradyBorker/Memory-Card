@@ -18,7 +18,6 @@ function App() {
         const pokemonRequests = await Promise.all(pokemonArray.map((pokemon) => fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)));
         const pokemon = await Promise.all(pokemonRequests.map((pokemon) => pokemon.json()));
 
-        // setPokemonObjects(pokemon)
         setPokemonObjects(shuffleArray(pokemon))
         localStorage.setItem('pokemonJson', JSON.stringify(pokemon));
       } catch (error) {
