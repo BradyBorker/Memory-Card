@@ -12,6 +12,9 @@ body {
 
 .header {
     padding: 10px;
+
+    display: flex;
+    justify-content: space-between;
 }
 
 .header p {
@@ -19,6 +22,7 @@ body {
 }
 
 h1,
-p {
+p,
+h3 {
     color: var(--header-red);
 }

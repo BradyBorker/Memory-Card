@@ -1,9 +1,7 @@
-// import { useState } from 'react'
 import { useEffect, useState, useRef } from 'react'
 import Card from './components/Card';
 import './App.css'
 
-// { 'id': pokemon.id, 'name': pokemonObj.name, 'sprites': pokemonObj.sprites.other.dream_world.front_default }
 function App() {
   const [pokemonObjects, setPokemonObjects] = useState(() => JSON.parse(localStorage.getItem('pokemonJson') ?? []));
   const [score, setScore] = useState(0);
@@ -20,7 +18,8 @@ function App() {
         const pokemonRequests = await Promise.all(pokemonArray.map((pokemon) => fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)));
         const pokemon = await Promise.all(pokemonRequests.map((pokemon) => pokemon.json()));
 
-        setPokemonObjects(pokemon)
+        // setPokemonObjects(pokemon)
+        setPokemonObjects(shuffleArray(pokemon))
         localStorage.setItem('pokemonJson', JSON.stringify(pokemon));
       } catch (error) {
         console.log(error)
@@ -36,6 +35,7 @@ function App() {
       return setScore(0);
     }
 
+    setPokemonObjects(shuffleArray(pokemonObjects));
     setScore(score + 1);
     if (score + 1 > highScore) setHighScore(highScore + 1)
 
@@ -50,7 +50,12 @@ function App() {
           <p>Gain points by clicking cards. Do not click the same card twice!</p>
         </div>
         <div className="score-counter">
-
+          <div className="score">
+            <h3>Score: {score}</h3>
+          </div>
+          <div className="high-score">
+            <h3>HighScore: {highScore}</h3>
+          </div>
         </div>
       </div>
       <div className="pokemon-cards">
@@ -60,6 +65,18 @@ function App() {
       </div>
     </>
   )
+}
+
+function shuffleArray(array) {
+  for (let i = 0; i < array.length; i += 1) {
+    const randomIndex = Math.floor(Math.random() * (array.length - 1));
+    const holder = array[i];
+
+    array[i] = array[randomIndex];
+    array[randomIndex] = holder
+  }
+
+  return array
 }
 
 export default App
