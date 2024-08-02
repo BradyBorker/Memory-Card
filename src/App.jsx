@@ -3,7 +3,7 @@ import Card from './components/Card';
 import './App.css'
 
 function App() {
-  const [pokemonObjects, setPokemonObjects] = useState(() => JSON.parse(localStorage.getItem('pokemonJson') ?? []));
+  const [pokemonObjects, setPokemonObjects] = useState(() => JSON.parse(localStorage.getItem('pokemonJson') ?? '[]'));
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
   const clickedPokemonCards = useRef([]);
